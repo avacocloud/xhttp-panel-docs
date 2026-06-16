@@ -29,31 +29,33 @@ export function Navbar() {
         </Link>
 
         <nav className="flex items-center gap-1">
-          {NAV.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={`px-3 py-1.5 rounded-md text-sm transition-colors ${
-                pathname.startsWith(item.href)
-                  ? "bg-muted text-foreground font-medium"
-                  : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
-              }`}
+          {/* nav links — hidden on mobile */}
+          <div className="hidden sm:flex items-center gap-1">
+            {NAV.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`px-3 py-1.5 rounded-md text-sm transition-colors ${
+                  pathname.startsWith(item.href)
+                    ? "bg-muted text-foreground font-medium"
+                    : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                }`}
+              >
+                {item.label}
+              </Link>
+            ))}
+            <a
+              href="https://t.me/avacocloud"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`${dir === "rtl" ? "mr-2" : "ml-2"} flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors`}
             >
-              {item.label}
-            </Link>
-          ))}
+              <ExternalLink className="h-3.5 w-3.5" />
+              {t("کانال", "Channel")}
+            </a>
+          </div>
 
-          <a
-            href="https://t.me/avacocloud"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`${dir === "rtl" ? "mr-2" : "ml-2"} flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors`}
-          >
-            <ExternalLink className="h-3.5 w-3.5" />
-            {t("کانال", "Channel")}
-          </a>
-
-          {/* Language toggle */}
+          {/* Language toggle — always visible */}
           <button
             onClick={() => setLocale(locale === "fa" ? "en" : "fa")}
             className={`${dir === "rtl" ? "mr-1" : "ml-1"} flex items-center gap-1 rounded-lg border border-border/60 bg-muted/50 px-2.5 py-1 text-xs font-mono font-medium hover:bg-muted transition-colors`}

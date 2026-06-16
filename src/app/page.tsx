@@ -23,7 +23,7 @@ export default function Home() {
       <Navbar />
 
       {/* Hero */}
-      <section className="relative flex-1 flex flex-col items-center justify-center text-center px-4 py-24 overflow-hidden">
+      <section className="relative flex-1 flex flex-col items-center justify-center text-center px-4 py-12 sm:py-24 overflow-hidden">
         <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
           <div className="h-[500px] w-[500px] rounded-full bg-primary/5 blur-3xl" />
         </div>
@@ -39,7 +39,7 @@ export default function Home() {
             </div>
           </div>
           <div>
-            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
+            <h1 className="text-3xl font-bold tracking-tight sm:text-5xl">
               {t("پنل XHTTP", "XHTTP Panel")}
             </h1>
             <p className="mt-3 text-lg text-muted-foreground">
