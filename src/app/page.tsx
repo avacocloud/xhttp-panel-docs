@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { Navbar } from "@/components/layout/Navbar";
 import { useI18n } from "@/lib/i18n";
 import { ArrowLeft, ArrowRight, Users, Globe, BarChart2, Shield, Server, Download, Zap } from "lucide-react";
@@ -35,7 +34,8 @@ export default function Home() {
           </div>
           <div className="flex justify-center">
             <div className="h-20 w-20 rounded-3xl bg-white dark:bg-transparent flex items-center justify-center shadow-2xl ring-8 ring-foreground/10 overflow-hidden">
-              <Image src="/logo.png" alt="XHTTP Logo" width={72} height={72} className="dark:invert object-contain" />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={`${process.env.NEXT_PUBLIC_BASE_PATH}/logo.png`} alt="XHTTP Logo" width={72} height={72} className="dark:invert object-contain" />
             </div>
           </div>
           <div>
