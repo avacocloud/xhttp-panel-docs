@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { Navbar } from "@/components/layout/Navbar";
 import { useI18n } from "@/lib/i18n";
-import { Zap, ArrowLeft, ArrowRight, Users, Globe, BarChart2, Shield, Server, Download } from "lucide-react";
+import { ArrowLeft, ArrowRight, Users, Globe, BarChart2, Shield, Server, Download, Zap } from "lucide-react";
 
 const FEATURES = [
   { icon: Users,    color: "#6366f1", fa: ["مدیریت کلاینت",   "UUID، ترافیک، انقضا، IP محدود"],  en: ["Client Management",   "UUID, traffic, expiry, IP limit"]  },
@@ -33,8 +34,8 @@ export default function Home() {
             {t("نسخه ۱.۰ — پایدار", "Version 1.0 — Stable")}
           </div>
           <div className="flex justify-center">
-            <div className="h-20 w-20 rounded-3xl bg-foreground flex items-center justify-center shadow-2xl ring-8 ring-foreground/10">
-              <Zap className="h-10 w-10 text-background" />
+            <div className="h-20 w-20 rounded-3xl bg-white dark:bg-transparent flex items-center justify-center shadow-2xl ring-8 ring-foreground/10 overflow-hidden">
+              <Image src="/logo.png" alt="XHTTP Logo" width={72} height={72} className="dark:invert object-contain" />
             </div>
           </div>
           <div>

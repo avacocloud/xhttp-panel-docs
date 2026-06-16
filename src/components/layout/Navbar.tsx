@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Zap, ExternalLink } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 
 export function Navbar() {
@@ -20,9 +21,7 @@ export function Navbar() {
     <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/80 backdrop-blur-md">
       <div className="mx-auto max-w-7xl pl-4 pr-2 flex h-14 items-center justify-between gap-4">
         <Link href="/" className="flex items-center gap-2 shrink-0">
-          <div className="h-7 w-7 rounded-lg bg-foreground flex items-center justify-center">
-            <Zap className="h-4 w-4 text-background" />
-          </div>
+          <Image src="/logo.png" alt="XHTTP Logo" width={28} height={28} className="dark:invert" />
           <span className="font-bold text-sm tracking-tight">
             {t("پنل XHTTP", "XHTTP Panel")}
           </span>
