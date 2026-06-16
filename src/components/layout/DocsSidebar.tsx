@@ -3,10 +3,15 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 
-export function DocsSidebar() {
+interface DocsSidebarProps {
+  mobileOpen?: boolean;
+  onClose?: () => void;
+}
+
+export function DocsSidebar({ mobileOpen, onClose }: DocsSidebarProps) {
   const pathname = usePathname();
   const { t, dir } = useI18n();
   const [hash, setHash] = useState("");
@@ -17,6 +22,11 @@ export function DocsSidebar() {
     window.addEventListener("hashchange", onHashChange);
     return () => window.removeEventListener("hashchange", onHashChange);
   }, [pathname]);
+
+  // Close mobile drawer on navigation
+  useEffect(() => {
+    onClose?.();
+  }, [pathname, hash]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const SECTIONS = [
     {
@@ -48,10 +58,17 @@ export function DocsSidebar() {
   const Chevron = dir === "rtl" ? ChevronLeft : ChevronRight;
   const borderSide = dir === "rtl" ? "border-l" : "border-r";
 
-  return (
-    <aside className={`w-44 shrink-0 sticky top-14 self-start h-[calc(100vh-3.5rem)] overflow-y-auto py-6
-      ${dir === "rtl" ? "pr-2 pl-1" : "pl-2 pr-1"}
-      ${borderSide} border-border/60`}>
+  const sidebarContent = (
+    <>
+      {/* Mobile close button */}
+      {onClose && (
+        <div className="flex items-center justify-between mb-4 md:hidden">
+          <span className="text-sm font-semibold">{t("فهرست", "Menu")}</span>
+          <button onClick={onClose} className="p-1 rounded-md hover:bg-muted transition-colors">
+            <X className="h-4 w-4" />
+          </button>
+        </div>
+      )}
       {SECTIONS.map((section) => (
         <div key={section.title} className="mb-6">
           <p className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground mb-2 px-2">
@@ -82,6 +99,30 @@ export function DocsSidebar() {
           </ul>
         </div>
       ))}
-    </aside>
+    </>
+  );
+
+  return (
+    <>
+      {/* Desktop sidebar */}
+      <aside className={`hidden md:block w-44 shrink-0 sticky top-14 self-start h-[calc(100vh-3.5rem)] overflow-y-auto py-6
+        ${dir === "rtl" ? "pr-2 pl-1" : "pl-2 pr-1"}
+        ${borderSide} border-border/60`}>
+        {sidebarContent}
+      </aside>
+
+      {/* Mobile drawer overlay */}
+      {mobileOpen && (
+        <div className="md:hidden fixed inset-0 z-50 flex">
+          {/* Backdrop */}
+          <div className="absolute inset-0 bg-background/80 backdrop-blur-sm" onClick={onClose} />
+          {/* Drawer */}
+          <aside className={`relative z-10 w-64 h-full bg-background border-border/60 overflow-y-auto py-6 px-4
+            ${dir === "rtl" ? "mr-auto border-l" : "ml-auto border-r"}`}>
+            {sidebarContent}
+          </aside>
+        </div>
+      )}
+    </>
   );
 }
