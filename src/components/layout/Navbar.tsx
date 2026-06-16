@@ -21,7 +21,7 @@ export function Navbar() {
       <div className="mx-auto max-w-7xl pl-4 pr-2 flex h-14 items-center justify-between gap-4">
         <Link href="/" className="flex items-center gap-2 shrink-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={`${process.env.NEXT_PUBLIC_BASE_PATH}/logo.png`} alt="XHTTP Logo" width={28} height={28} className="dark:invert" />
+          <img src={`${process.env.NEXT_PUBLIC_BASE_PATH}/logo.png`} alt="XHTTP Logo" width={28} height={28} className="rounded-md bg-white" />
           <span className="font-bold text-sm tracking-tight">
             {t("پنل XHTTP", "XHTTP Panel")}
           </span>
