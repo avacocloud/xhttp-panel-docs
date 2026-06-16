@@ -33,7 +33,7 @@ export default function Home() {
             {t("نسخه ۱.۰ — پایدار", "Version 1.0 — Stable")}
           </div>
           <div className="flex justify-center">
-            <div className="h-20 w-20 rounded-3xl bg-white dark:bg-transparent flex items-center justify-center shadow-2xl ring-8 ring-foreground/10 overflow-hidden">
+            <div className="h-20 w-20 rounded-3xl flex items-center justify-center ring-8 ring-foreground/10 overflow-hidden">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={`${process.env.NEXT_PUBLIC_BASE_PATH}/logo.png`} alt="XHTTP Logo" width={72} height={72} className="dark:invert object-contain" />
             </div>
